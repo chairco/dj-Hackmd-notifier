@@ -8,6 +8,13 @@ name = "pypi"
 [packages]
 
 django = "*"
+django-q = "*"
+django-environ = "*"
+dj-database-url = "*"
+django-compressor = "*"
+python-dotenv = "*"
+django-debug-toolbar = "*"
+django-crispy-forms = "*"
 
 
 [dev-packages]
