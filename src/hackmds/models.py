@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 # Create your models here.
 
 
-class archive(models.Model):
+class Archive(models.Model):
 
     url = models.CharField(
         max_length=50,
@@ -24,8 +24,8 @@ class archive(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        verbose_name = _('archive')
-        verbose_name_plural = _('archives')
+        verbose_name = _('Archive')
+        verbose_name_plural = _('Archives')
 
 
     def __str__(self):
