@@ -17,6 +17,7 @@ django-debug-toolbar = "*"
 django-crispy-forms = "*"
 "beautifulsoup4" = "*"
 requests = "*"
+diffhtml = {git = "https://github.com/uranusjr/diffhtml.git"}
 
 
 [dev-packages]

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8d89c880588a8c622931785fa06f44251ec54362e73ac6e385a0716cdf682b53"
+            "sha256": "5569fb955481efa461075b7f496d32b74dad7e665b7000aefa412043f4bc55d2"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -70,6 +70,9 @@
                 "sha256:f15516df478d5a56180fbf80e68f206010e6d160fc39fa508b65e035fd75130b"
             ],
             "version": "==6.7"
+        },
+        "diffhtml": {
+            "git": "https://github.com/uranusjr/diffhtml.git"
         },
         "dj-database-url": {
             "hashes": [
