@@ -68,7 +68,8 @@ if os.path.exists(env_file):
 
 SECRET_KEY = env('SECRET_KEY')
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases

@@ -15,6 +15,8 @@ django-compressor = "*"
 python-dotenv = "*"
 django-debug-toolbar = "*"
 django-crispy-forms = "*"
+"beautifulsoup4" = "*"
+requests = "*"
 
 
 [dev-packages]
