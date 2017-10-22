@@ -1,0 +1,57 @@
+{% extends 'base_mail.html' %}
+
+{% block title %}ndiff{% endblock title %}
+
+
+{% block head %}
+<style>
+ins, del {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 0.2rem;
+}
+ins {
+    background-color: #9FE6B8;
+}
+del {
+    background-color: #E6ADAB;
+}
+ins + br + del {    /* A bit margin to the next pair. */
+    margin-top: 0.4rem;
+}
+
+/* Inline diffs. */
+ins > ins, del > del {
+    display: inline;
+    padding: 0;
+}
+ins > ins {
+    background-color: #70BD8A;
+}
+del > del {
+    background-color: #E37E79;
+}
+</style>
+{% endblock head %}
+
+
+{% block heading %}
+
+<h3><code>Hackmds notify</code></h3>
+
+{% endblock heading %}
+
+{% block main %}
+
+{% if result %}
+<section class="result-section">
+    <div class="panes">
+        <div class="pane">
+            <code>{{ result }}</code>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+{% endblock main %}
