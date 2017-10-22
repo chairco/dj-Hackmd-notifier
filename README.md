@@ -1,6 +1,6 @@
 # dj-Hackmd-notifer
 
-Django + Django-Q 開發，用來建立排程與比對 [Hack.id](https://hackmd.io/) 上的網頁文件內容的線上工具。
+Django + Django-Q 開發，用來建立排程與比對 [Hackmd.io](https://hackmd.io/) 上的網頁文件內容的線上工具。
 
 
 ## 環境設定
