@@ -102,4 +102,4 @@ def hackmd_task(url):
     else:
         print('第一次新增')
         Archive.objects.create(url=url, content=content)
-    return result
+    return not result and '' or result
