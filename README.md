@@ -57,7 +57,7 @@ cp dj-Hackmd-notifer/src/src/settings/local_sample.env dj-Hackmd-notifer/src/src
 + `EMAIL_HOST_USER={}` 發送信件 gmail 帳號。
 + `EMAIL_HOST_PASSWORD={}` 發送信件 gmail 密碼。
 + `DATABASE_URL='postgres://localhost/hackmds'` 預設採用 postgresql 資料庫，可根據需求修改(sqlite3 目前測試會有問題)。
-+ `SECRET_KEY={}` Django 需要的 secret key。
++ `SECRET_KEY={}` Django 需要的 secret key。可到[這邊](https://www.miniwebtool.com/django-secret-key-generator/)取得
 
 因為 Google 目前針對帳號安全開啟二階段認證，因此如果需要透過第三方程式發送 gmail 信件，請先至[後台](https://myaccount.google.com/lesssecureapps)關閉二階段認證並且允許第三方程式存取帳戶。 *注意: 這樣修改可能會有資安危險。*
 
@@ -99,15 +99,15 @@ python manage.py runserver
 
 點選 `Scheduled tasks` 旁邊的新增排程。
 
-+ `Name` 隨意輸入，不要太複雜
++ `Name` 隨意輸入，不要太複雜。
 + `Func` 執行任務函式，src 是 Django project 名稱, tasks 是檔案名稱, `hackmd_task` 為函式名稱。
 + `Hook` 任務結束時會印出 stdout 的結果。目前還沒印出具體訊息。
-+ `Kwargs` 函式需要的參數, 在這裡只需要 `url`。注意因為比對是以 `url` 作為 key 儲存在 db 因此請以 hackmd.io 發表的網址，例如: https://hackmd.io/s/ByIn4AYaZ
++ `Kwargs` 函式需要的參數, 在這裡只需要 `url`。注意因為比對是以 `url` 作為 key 儲存在 db 因此請以 hackmd.io **發表**的網址，例如: https://hackmd.io/s/ByIn4AYaZ, 一定要帶上 https:// 程式未來可為這部分自動偵測。
 + `Schedule type` 多久運作一次。
-+ `Repeats` 設定 -1 代表永遠
-+ `Next Run` 點選現在
++ `Repeats` 設定 -1 代表永遠。
++ `Next Run` 點選現在。
 
-接著按儲存 
+最後按儲存完成。 
 
 ![Imgur](https://i.imgur.com/5NXFgC2.png)
 
