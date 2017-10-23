@@ -92,7 +92,7 @@ def hackmd_task(url):
         if diff_count > 0:
             Archive.objects.filter(url=url).update(content=content)
 
-        if diff_count > 5:
+        if diff_count >= 2:
             try:
                 hackmd_notify_email(email_subject=url, result=result)
             except Exception as e:
