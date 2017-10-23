@@ -7,8 +7,8 @@ name = "pypi"
 
 [packages]
 
-django = "*"
-django-q = "*"
+django = "==1.11.5"
+django-q = "==0.8.0"
 django-environ = "*"
 dj-database-url = "*"
 django-compressor = "*"
@@ -18,6 +18,12 @@ django-crispy-forms = "*"
 "beautifulsoup4" = "*"
 requests = "*"
 diffhtml = {git = "https://github.com/uranusjr/diffhtml.git"}
+redis = "==2.10.5"
+amqp = "==2.2.2"
+celery = "==4.1.0"
+django-crontab = "==0.7.1"
+django-pickling = "==1.0"
+"psycopg2" = "*"
 
 
 [dev-packages]
