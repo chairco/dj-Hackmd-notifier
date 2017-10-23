@@ -133,7 +133,10 @@ python manage.py runserver
 
 ![Imgur](https://i.imgur.com/ukz8lEH.png)
 
-最後在開啟一個終端機執行 Django-Q:
+
+### 啟動 Django-Q instance
+
+開啟一個終端機執行 Django-Q:
 
 ```
 python manage.py qcluster
@@ -154,14 +157,14 @@ python manage.py qcluster
 ```
 
 
-如果有超過2處的修改就會收到信件如：
+如果有超過 2 處的修改就會收到信件如：
 
 ![Imgur](https://i.imgur.com/rnDd7Xu.png)
 
 ![Imgur](https://i.imgur.com/kXyu18I.png)
 
 
-### 參考
+## 參考
 
 本專案同時參考 @uranusjr 的 diffhtml [專案](https://github.com/uranusjr/diffhtml)在此感謝。
 
