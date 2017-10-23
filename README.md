@@ -135,7 +135,7 @@ python manage.py qcluster
 ```
 
 
-如果有超過五處的修改就會收到信件如：
+如果有超過2處的修改就會收到信件如：
 
 ![Imgur](https://i.imgur.com/rnDd7Xu.png)
 
