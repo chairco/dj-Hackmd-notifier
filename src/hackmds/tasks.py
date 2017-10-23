@@ -79,6 +79,7 @@ def hackmd_task(url):
 
     """@bref find keywords to generate notification
     """
+    resutl = ''
     if len(Archive.objects.filter(url=url)):
         compare = Archive.objects.get(url=url)
         email_subject = url
@@ -102,4 +103,4 @@ def hackmd_task(url):
     else:
         print('第一次新增')
         Archive.objects.create(url=url, content=content)
-    return not result and '' or result
+    return not result and None or result
