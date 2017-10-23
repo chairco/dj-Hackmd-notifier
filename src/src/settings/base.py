@@ -34,7 +34,6 @@ TEMPLATES = [
             'context_processors': [
                 # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
                 # list if you haven't customized them:
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
@@ -42,6 +41,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                #'django.core.context_processors.request', # not use in 1.10
             ],
             'debug': True,
         },
@@ -69,7 +69,7 @@ if os.path.exists(env_file):
 SECRET_KEY = env('SECRET_KEY')
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
