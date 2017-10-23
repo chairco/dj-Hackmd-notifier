@@ -9,6 +9,8 @@ from django.core.mail import EmailMessage
 from django.template import loader
 from django.contrib.auth.models import User
 
+from django_q.tasks import async_chain, result_group
+
 from hackmds.models import Archive
 from bs4 import BeautifulSoup
 from markupsafe import Markup
@@ -104,3 +106,15 @@ def hackmd_task(url):
         print('第一次新增')
         Archive.objects.create(url=url, content=content)
     return not result and None or result
+
+
+def hackmd_taskchain(urls):
+    """
+    :type urls: list()
+    :rtype: QuerySet()
+    """
+    urls = [u.split('#')[0].strip() for u in urls.split(',')]
+    chains = [('hackmds.tasks.hackmd_task', (url,)) for url in urls]
+    group_id = async_chain(chains)
+    return result_group(group_id, count=len(urls))
+    
