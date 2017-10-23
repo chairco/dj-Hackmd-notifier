@@ -49,7 +49,7 @@ pip install -r requirements.txt
 使用 python-dotenv 管理環境變數，首先需要在 settings/ 目錄下先建立 `local.env` 檔案。
 
 ```
-cp dj-Hackmd-notifer/src/src/settings/local_sample.env dj-Hackmd-notifer/src/src/settings/local.env 
+cp dj-Hackmd-notifier/src/src/settings/local_sample.env dj-Hackmd-notifier/src/src/settings/local.env 
 ```
 
 接著設定環境需要參數:
@@ -64,7 +64,7 @@ cp dj-Hackmd-notifer/src/src/settings/local_sample.env dj-Hackmd-notifer/src/src
 
 新增 logs 資料夾, 專案所有產生的 log file 都會存放在此
 ```
-cd src
+cd dj-Hackmd-notifier/src
 mkdir -p logs
 ```
 
