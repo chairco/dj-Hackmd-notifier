@@ -56,13 +56,23 @@ cp dj-Hackmd-notifer/src/src/settings/local_sample.env dj-Hackmd-notifer/src/src
 
 + `EMAIL_HOST_USER={}` 發送信件 gmail 帳號。
 + `EMAIL_HOST_PASSWORD={}` 發送信件 gmail 密碼。
-+ `DATABASE_URL=sqlite:///db.sqlite3` 預設採用 sqlite3 資料庫，可根據需求修改。
++ `DATABASE_URL='postgres://localhost/hackmds'` 預設採用 postgresql 資料庫，可根據需求修改(sqlite3 目前測試會有問題)。
 + `SECRET_KEY={}` Django 需要的 secret key。
 
 因為 Google 目前針對帳號安全開啟二階段認證，因此如果需要透過第三方程式發送 gmail 信件，請先至[後台](https://myaccount.google.com/lesssecureapps)關閉二階段認證並且允許第三方程式存取帳戶。 *注意: 這樣修改可能會有資安危險。*
 
 
+新增 logs 資料夾, 專案所有產生的 log file 都會存放在此
+```
+cd src
+mkdir -p logs
+```
+
+
 建立資料庫:
+
+注意，目前資料庫預設 `Postgresql` 請先在本機端預設安裝，並且建立對應的 table。安裝完成後再執行 migrate 指令。
+
 ```
 python manage.py migrate
 ```
@@ -90,8 +100,8 @@ python manage.py runserver
 點選 `Scheduled tasks` 旁邊的新增排程。
 
 + `Name` 隨意輸入，不要太複雜
-+ `Func` 執行任務函式，src 是 Django project 名稱, tasks 是檔案名稱, `hackmd_ck_task` 為函式名稱。
-+ `Hook` 任務結束時會印出 stdout 的結果。目前還沒有用處。
++ `Func` 執行任務函式，src 是 Django project 名稱, tasks 是檔案名稱, `hackmd_task` 為函式名稱。
++ `Hook` 任務結束時會印出 stdout 的結果。目前還沒印出具體訊息。
 + `Kwargs` 函式需要的參數, 在這裡只需要 `url`。注意因為比對是以 `url` 作為 key 儲存在 db 因此請以 hackmd.io 發表的網址，例如: https://hackmd.io/s/ByIn4AYaZ
 + `Schedule type` 多久運作一次。
 + `Repeats` 設定 -1 代表永遠
@@ -99,9 +109,9 @@ python manage.py runserver
 
 接著按儲存 
 
-![Imgur](https://i.imgur.com/JClI8ix.png)
+![Imgur](https://i.imgur.com/5NXFgC2.png)
 
-![Imgur](https://i.imgur.com/GtoTs6v.png)
+![Imgur](https://i.imgur.com/yMSlUX8.png)
 
 
 最後在開啟一個終端機執行 Django-Q:
