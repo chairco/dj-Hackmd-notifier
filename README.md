@@ -92,6 +92,9 @@ python manage.py runserver
 
 ## 排程設定
 
+
+### 一次一個網頁
+
 先進入 [後台網頁](http://localhost:8000/admin/)，並用剛剛建立的 admin 帳號與密碼登入。
 
 ![Imgur](https://i.imgur.com/OpHhXEU.png)
@@ -102,7 +105,7 @@ python manage.py runserver
 + `Name` 隨意輸入，不要太複雜。
 + `Func` 執行任務函式，src 是 Django project 名稱, tasks 是檔案名稱, `hackmd_task` 為函式名稱。
 + `Hook` 任務結束時會印出 stdout 的結果。目前還沒印出具體訊息。
-+ `Kwargs` 函式需要的參數, 在這裡只需要 `url`。注意因為比對是以 `url` 作為 key 儲存在 db 因此請以 hackmd.io **發表**的網址，例如: https://hackmd.io/s/ByIn4AYaZ, 一定要帶上 https:// 程式未來可為這部分自動偵測。
++ `Kwargs` 函式需要的參數, 在這裡只需要 `url`。注意因為比對是以 `url` 作為 key 儲存在 db 因此請以 hackmd.io **發表**的網址，例如: url='https://hackmd.io/s/ByIn4AYaZ', 一定要帶上 https:// 程式未來可為這部分自動偵測。
 + `Schedule type` 多久運作一次。
 + `Repeats` 設定 -1 代表永遠。
 + `Next Run` 點選現在。
@@ -113,6 +116,22 @@ python manage.py runserver
 
 ![Imgur](https://i.imgur.com/yMSlUX8.png)
 
+
+### 一次多組網頁
+
+感謝 @mlouielu 提醒。可能會有一次要抓取多個網頁（根據 hw 別）這邊新增一個 `hackmd_taskchain` 函數來處理。
+
++ `Name` 隨意輸入。
++ `Func` 執行任務函式，src 是 Django project 名稱, tasks 是檔案名稱, `hackmd_taskchain` 為函式名稱。
++ `Hook` 任務結束時會印出 stdout 的結果。目前還沒印出具體訊息。
++ `Kwargs` 函式需要的參數, 在這裡輸入多個網址，例如: `urls='https://hackmd.io/s/H1fSXCcpb, https://hackmd.io/s/H1fSXCcp2#1234'` 程式會幫忙處理前後空白問題。注意要帶上 https://
++ `Schedule type` 多久運作一次。
++ `Repeats` 設定 -1 代表永遠。
++ `Next Run` 點選現在。
+
+![Imgur](https://i.imgur.com/gKKxho0.png) 
+
+![Imgur](https://i.imgur.com/ukz8lEH.png)
 
 最後在開啟一個終端機執行 Django-Q:
 
