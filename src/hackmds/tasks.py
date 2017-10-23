@@ -11,7 +11,6 @@ from django.contrib.auth.models import User
 
 from hackmds.models import Archive
 from bs4 import BeautifulSoup
-from concurrent import futures
 from markupsafe import Markup
 
 
@@ -94,14 +93,13 @@ def hackmd_task(url):
             Archive.objects.filter(url=url).update(content=content)
 
         if diff_count > 5:
-            # notify by django email alarm by threading
-            with futures.ThreadPoolExecutor(max_workers=1) as execute:
-                res = execute.submit(hackmd_notify_email, url, result)
-            return res
-            # return hackmd_notify_email(url=url, result=result)
-        return 'OK, No send_mail'
+            try:
+                hackmd_notify_email(email_subject=url, result=result)
+            except Exception as e:
+                return e
+            print('send_mail success')
+        print('OK, No send_mail')
     else:
         print('第一次新增')
         Archive.objects.create(url=url, content=content)
-    return 'OK, First'
-
+    return result
