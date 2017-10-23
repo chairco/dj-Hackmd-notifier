@@ -22,6 +22,15 @@ cutoff = 0.6
 
 
 def send_mail(email_subject, email_body, to, cc=None, bcc=None, from_email=None):
+    """send email by Django send_email module
+    :type email_subject: str
+    :type email_body: Markup()
+    :type to: list()
+    :type cc: list()
+    :type bcc: list()
+    :type from_email: str
+    :rtype: EmailMessage()
+    """
     if bcc is None:
         bcc = []
     else:
@@ -51,6 +60,12 @@ def send_mail(email_subject, email_body, to, cc=None, bcc=None, from_email=None)
 
 
 def hackmd_notify_email(email_subject, result, cc=None):
+    """Add mail template
+    :type email_subject: str
+    :type result: Markup()
+    :type cc: list()
+    :rtype: send_mail()
+    """
     t = loader.get_template(
         os.path.join(
             os.path.join(settings.BASE_DIR, 'templates'), 'email/'
@@ -68,7 +83,9 @@ def hackmd_notify_email(email_subject, result, cc=None):
 
 
 def hackmd_task(url):
-    """@bref open requests to parse information from hackmd.io
+    """get hackmd.io content compare and send mail, first will save.
+    :type urls: str
+    :rtype: QuerySet()
     """
     url = url.split('#')[0]  # get the url none anchor
     r = requests.get(url)
@@ -79,8 +96,6 @@ def hackmd_task(url):
         'div', {'id': 'doc', 'class': 'container markdown-body'})
     content = content.string
 
-    """@bref find keywords to generate notification
-    """
     resutl = ''
     if len(Archive.objects.filter(url=url)):
         compare = Archive.objects.get(url=url)
@@ -110,11 +125,10 @@ def hackmd_task(url):
 
 def hackmd_taskchain(urls):
     """
-    :type urls: list()
+    :type urls: str
     :rtype: QuerySet()
     """
     urls = [u.split('#')[0].strip() for u in urls.split(',')]
     chains = [('hackmds.tasks.hackmd_task', (url,)) for url in urls]
     group_id = async_chain(chains)
     return result_group(group_id, count=len(urls))
-    
